@@ -3,7 +3,7 @@ import logging
 from typing import Callable, Dict, Optional, Any
 from datetime import datetime
 
-from homeassistant.components.sensor import SensorEntity, SensorStateClass
+from homeassistant.components.sensor import SensorDeviceClass, SensorEntity, SensorStateClass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity import EntityCategory
@@ -67,40 +67,40 @@ async def async_setup_entry(
         ByteWattSensor(
             coordinator, 
             entry, 
-            SENSOR_GRID_CONSUMPTION, 
-            "Grid Consumption", 
-            "power", 
-            "pgrid", 
+            SENSOR_GRID_CONSUMPTION,
+            "Grid Consumption",
+            SensorDeviceClass.POWER,
+            "pgrid",
             "W", 
             "mdi:transmission-tower"
         ),
         ByteWattSensor(
             coordinator, 
             entry, 
-            SENSOR_HOUSE_CONSUMPTION, 
-            "House Consumption", 
-            "power", 
-            "pload", 
+            SENSOR_HOUSE_CONSUMPTION,
+            "House Consumption",
+            SensorDeviceClass.POWER,
+            "pload",
             "W", 
             "mdi:home-lightning-bolt"
         ),
         ByteWattSensor(
             coordinator, 
             entry, 
-            SENSOR_BATTERY_POWER, 
-            "Battery Power", 
-            "power", 
-            "pbat", 
+            SENSOR_BATTERY_POWER,
+            "Battery Power",
+            SensorDeviceClass.POWER,
+            "pbat",
             "W", 
             "mdi:battery-charging"
         ),
         ByteWattSensor(
             coordinator, 
             entry, 
-            SENSOR_PV, 
-            "PV Power", 
-            "power", 
-            "ppv", 
+            SENSOR_PV,
+            "PV Power",
+            SensorDeviceClass.POWER,
+            "ppv",
             "W", 
             "mdi:solar-power"
         ),
@@ -123,7 +123,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_TOTAL_SOLAR, 
             "Total Solar Generation", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Total_Solar_Generation", 
             "kWh", 
             "mdi:solar-power"
@@ -133,7 +133,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_TOTAL_FEED_IN, 
             "Total Feed In", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Total_Feed_In", 
             "kWh", 
             "mdi:transmission-tower-export"
@@ -143,7 +143,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_TOTAL_BATTERY_CHARGE, 
             "Total Battery Charge", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Total_Battery_Charge", 
             "kWh", 
             "mdi:battery-charging"
@@ -153,7 +153,7 @@ async def async_setup_entry(
             entry,
             SENSOR_TOTAL_BATTERY_DISCHARGE,
             "Total Battery Discharge",
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Total_Battery_Discharge",
             "kWh",
             "mdi:battery-minus"
@@ -163,7 +163,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_PV_POWER_HOUSE, 
             "PV Power to House", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "PV_Power_House", 
             "kWh", 
             "mdi:solar-power-variant"
@@ -173,7 +173,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_PV_CHARGING_BATTERY, 
             "PV Charging Battery", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "PV_Charging_Battery", 
             "kWh", 
             "mdi:solar-power-variant-outline"
@@ -183,7 +183,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_TOTAL_HOUSE_CONSUMPTION, 
             "Total House Consumption", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Total_House_Consumption", 
             "kWh", 
             "mdi:home-lightning-bolt"
@@ -193,7 +193,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_GRID_BATTERY_CHARGE, 
             "Grid Based Battery Charge", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Grid_Based_Battery_Charge", 
             "kWh", 
             "mdi:transmission-tower-import"
@@ -203,7 +203,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_GRID_POWER_CONSUMPTION, 
             "Grid Power Consumption", 
-            "energy",  # Changed to "energy" for Energy Dashboard
+            SensorDeviceClass.ENERGY,
             "Grid_Power_Consumption", 
             "kWh", 
             "mdi:transmission-tower"
@@ -218,7 +218,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_PV_GENERATED_TODAY, 
             "PV Generated Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "PV_Generated_Today", 
             "kWh", 
             "mdi:solar-power"
@@ -228,7 +228,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_CONSUMED_TODAY, 
             "Consumed Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Consumed_Today", 
             "kWh", 
             "mdi:home-lightning-bolt"
@@ -238,7 +238,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_FEED_IN_TODAY, 
             "Feed In Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Feed_In_Today", 
             "kWh", 
             "mdi:transmission-tower-export"
@@ -248,7 +248,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_GRID_IMPORT_TODAY, 
             "Grid Import Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Grid_Import_Today", 
             "kWh", 
             "mdi:transmission-tower-import"
@@ -258,7 +258,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_BATTERY_CHARGED_TODAY, 
             "Battery Charged Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Battery_Charged_Today", 
             "kWh", 
             "mdi:battery-plus"
@@ -268,7 +268,7 @@ async def async_setup_entry(
             entry, 
             SENSOR_BATTERY_DISCHARGED_TODAY, 
             "Battery Discharged Today", 
-            "energy",
+            SensorDeviceClass.ENERGY,
             "Battery_Discharged_Today", 
             "kWh", 
             "mdi:battery-minus"
@@ -344,6 +344,8 @@ class ByteWattSensor(CoordinatorEntity, SensorEntity):
         self._attr_native_unit_of_measurement = unit
         self._attr_icon = icon
         self._attr_entity_category = entity_category
+        if device_class == SensorDeviceClass.POWER:
+            self._attr_state_class = SensorStateClass.MEASUREMENT
 
     @property
     def device_info(self):
@@ -380,7 +382,7 @@ class ByteWattSensor(CoordinatorEntity, SensorEntity):
                 return None
                 
             # Return the value, converting string values to float if needed for numerical sensors
-            if self._attr_device_class == "power" and isinstance(value, (str, int, float)):
+            if self._attr_device_class == SensorDeviceClass.POWER and isinstance(value, (str, int, float)):
                 try:
                     return float(value)
                 except (ValueError, TypeError):
