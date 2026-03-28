@@ -51,6 +51,7 @@ SENSOR_GRID_CONSUMPTION = "grid_consumption"
 SENSOR_HOUSE_CONSUMPTION = "house_consumption"
 SENSOR_BATTERY_POWER = "battery_power"
 SENSOR_PV = "pv_power"
+SENSOR_BATTERY_STATE = "battery_state"
 SENSOR_LAST_UPDATE = "last_update"
 
 # Battery settings sensor types
