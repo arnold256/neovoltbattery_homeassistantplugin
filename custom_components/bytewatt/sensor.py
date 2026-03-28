@@ -545,20 +545,21 @@ class ByteWattBatteryStateSensor(CoordinatorEntity, SensorEntity):
             pbat = float(pbat)
 
             # Hysteresis prevents rapid toggling when pbat fluctuates near zero
+            # Positive pbat = discharging, negative pbat = charging
             if self._current_state == BATTERY_STATE_CHARGING:
-                if pbat < -BATTERY_STATE_HYSTERESIS_W:
+                if pbat > BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_DISCHARGING
                 elif abs(pbat) <= BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_IDLE
             elif self._current_state == BATTERY_STATE_DISCHARGING:
-                if pbat > BATTERY_STATE_HYSTERESIS_W:
+                if pbat < -BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_CHARGING
                 elif abs(pbat) <= BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_IDLE
             else:  # Idle
-                if pbat > BATTERY_STATE_HYSTERESIS_W:
+                if pbat < -BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_CHARGING
-                elif pbat < -BATTERY_STATE_HYSTERESIS_W:
+                elif pbat > BATTERY_STATE_HYSTERESIS_W:
                     self._current_state = BATTERY_STATE_DISCHARGING
 
             return self._current_state
